@@ -1,0 +1,4 @@
+for DTO
+npm i --save class-validator class-transformer
+
+@nestjs/mapped-types
