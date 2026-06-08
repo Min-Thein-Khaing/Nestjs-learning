@@ -12,6 +12,7 @@ import {
 import { CreateUserDto } from './dtos/create.user.dto';
 import { GetUserDto } from './dtos/get.user.dto';
 import { UpdateUserDto } from './dtos/update.user.dto';
+import { UsersService } from './providers/users.service';
 
 @Controller('users')
 export class UsersController {
@@ -19,6 +20,12 @@ export class UsersController {
   //   public getUsers() {
   //     return 'Get All User endpoints';
   //   }
+  constructor(private readonly usersService: UsersService) {}
+  @Get()
+  public getAllUsers() {
+    return this.usersService.findAll();
+  }
+
   @Get(':id')
   getUserById(@Param() getUserDto: GetUserDto) {
     console.log(getUserDto);
