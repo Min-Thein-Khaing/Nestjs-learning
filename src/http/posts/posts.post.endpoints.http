@@ -1,8 +1,8 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
 {
-    "title": "mindfdf ga lar par",
-    "slug": "min-ga-lar-par",
-    "content": "san kyi tar par",
+    "title": "mindfdfdfd ga lar par",
+    "slug": "min-ga-lar-parr",
+    "content": "sandfd  kyi tar par",
     "status": "published"
 }

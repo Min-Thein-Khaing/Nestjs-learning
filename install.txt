@@ -10,3 +10,15 @@ npm i @nestjs/swagger
 
 @compodoc/compodoc
 npm i --save-dev  @compodoc/compodoc
+
+
+database connect need this 3 package 
+1.typeorm
+npm i typeorm
+
+2.@nestjs/typeorm
+npm i --save @nestjs/typeorm typeorm
+
+3.pg
+npm i pg
+npm install --save @types/pg
