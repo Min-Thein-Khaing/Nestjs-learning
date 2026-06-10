@@ -2,3 +2,11 @@ for DTO
 npm i --save class-validator class-transformer
 
 @nestjs/mapped-types
+npm i @nestjs/mapped-types
+
+
+@nestjs/swagger
+npm i @nestjs/swagger
+
+@compodoc/compodoc
+npm i --save-dev  @compodoc/compodoc
