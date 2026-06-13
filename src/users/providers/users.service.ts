@@ -1,4 +1,9 @@
-import { ConflictException, forwardRef, Inject, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthService } from 'src/auth/provider/auth.service';
 import { User } from '../user.entity';

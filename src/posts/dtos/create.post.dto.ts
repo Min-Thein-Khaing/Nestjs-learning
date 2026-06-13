@@ -8,9 +8,14 @@ import {
   IsUrl,
   Matches,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
 import { PostStatus } from '../enums/postStatus.enum';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Tag } from 'src/tags/tags.entity';
+import { CreateTagDto } from 'src/tags/dtos/create.tag.dto';
+import { Type } from 'class-transformer';
+import { CreatePostMetaDto } from 'src/post-meta/dtos/create.post-meta.dto';
 
 export class CreatePostDto {
   @ApiProperty({
@@ -77,13 +82,22 @@ export class CreatePostDto {
 
   @ApiProperty({
     description: 'The tags associated with the post',
-    example: ['tag1', 'tag2'],
-    type: [String],
+    type: [CreateTagDto],
     required: false,
   })
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
-  @MinLength(2, { each: true })
-  tag?: string[];
+  @ValidateNested({ each: true })
+  @Type(() => CreateTagDto)
+  tag?: Tag[];
+
+  @ApiProperty({
+    description: 'The meta data of the post',
+    type: CreatePostMetaDto,
+    required: true,
+  })
+  @ValidateNested()
+  @IsNotEmpty()
+  @Type(() => CreatePostMetaDto)
+  meta!: CreatePostMetaDto;
 }

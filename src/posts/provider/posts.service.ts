@@ -12,7 +12,8 @@ export class PostsService {
     @InjectRepository(Post)
     private postRepository: Repository<Post>,
   ) {}
-  async findAll(userId: string) {
+
+  async findAll(userId?: string) {
     console.log(userId);
     // const user = this.usersService.findByUserId(userId);
     const post = this.postRepository.find();

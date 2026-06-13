@@ -1,8 +1,12 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
 {
-    "title": "mindfdfdfd ga lar par",
-    "slug": "min-ga-lar-parr",
-    "content": "sandfd  kyi tar par",
-    "status": "published"
+  "title": "My New Post Title 2",
+  "slug": "my-new-post-title-2",
+  "content": "This is content 2",
+  "status": "draft",
+    "tag" : [{"label":"san kyi tar par 2","description":"min ga lar par 2"}],
+  "meta": {
+    "readTime": "10 mins " 
+  }
 }

@@ -13,6 +13,11 @@ export class PostsController {
     return this.postsService.findAll(userId);
   }
 
+  @Get('')
+  getPostAll() {
+    return this.postsService.findAll();
+  }
+
   @Post()
   @ApiOperation({ summary: 'Create a new post' })
   @ApiResponse({ status: 201, description: 'Post created successfully' })
