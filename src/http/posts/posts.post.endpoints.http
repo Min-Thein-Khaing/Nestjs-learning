@@ -1,12 +1,15 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
 {
-  "title": "My New Post Title 2",
-  "slug": "my-new-post-title-2",
-  "content": "This is content 2",
+  "title": "My New Post Title 4",
+  "slug": "my-new-post-title-4",
+  "content": "This is content 4",
   "status": "draft",
-    "tag" : [{"label":"san kyi tar par 2","description":"min ga lar par 2"}],
+  "tag" : [{"label":"san kyi tar par 4","description":"min ga lar par 4"},{"label":"san kyi tar par 4","description":"min ga lar par 4"}],
   "meta": {
-    "readTime": "10 mins " 
-  }
+    "readTime": "50 mins " 
+  },
+  "authorId":1
 }
+
+DELETE http://localhost:3000/posts/1

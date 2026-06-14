@@ -1,6 +1,7 @@
 import {
   IsArray,
   IsEnum,
+  IsInt,
   IsISO8601,
   IsNotEmpty,
   IsOptional,
@@ -96,8 +97,17 @@ export class CreatePostDto {
     type: CreatePostMetaDto,
     required: true,
   })
-  @ValidateNested()
+  @ValidateNested({ each: true })
   @IsNotEmpty()
   @Type(() => CreatePostMetaDto)
   meta!: CreatePostMetaDto;
+
+  @ApiProperty({
+    description: 'The author ID of the post',
+    example: 1,
+    required: true,
+  })
+  @IsNotEmpty()
+  @IsInt()
+  authorId!: number;
 }

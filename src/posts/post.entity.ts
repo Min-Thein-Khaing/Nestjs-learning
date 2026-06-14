@@ -1,13 +1,14 @@
 import {
   Column,
   Entity,
-  JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PostStatus } from './enums/postStatus.enum';
 import { Tag } from 'src/tags/tags.entity';
 import { PostMeta } from 'src/post-meta/post-meta.entity';
+import { User } from 'src/users/user.entity';
 
 @Entity()
 export class Post {
@@ -39,7 +40,12 @@ export class Post {
   })
   tag?: Tag[];
 
-  @OneToOne(() => PostMeta, { cascade: true, eager: true })
-  @JoinColumn()
+  @OneToOne(() => PostMeta, (postMeta) => postMeta.post, {
+    cascade: true,
+    eager: true,
+  })
   meta!: PostMeta;
+
+  @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
+  author!: User;
 }

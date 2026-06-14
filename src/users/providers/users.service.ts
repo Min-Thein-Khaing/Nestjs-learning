@@ -55,8 +55,7 @@ export class UsersService {
    * @param userId
    * @returns
    */
-  findByUserId(userId: string) {
-    console.log(userId);
-    return { id: userId, name: 'John Doe', email: 'h9M4y@example.com' };
+  findByUserId(id: number) {
+    return this.userRepository.findOneBy({ id });
   }
 }

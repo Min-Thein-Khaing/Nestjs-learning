@@ -8,9 +8,9 @@ export class AuthService {
     private readonly UsersService: UsersService,
   ) {}
 
-  login(email: string, password: string, id: string) {
+  login(email: string, password: string, id: number) {
     const user = this.UsersService.findByUserId(id);
-    return 'Token';
+    return user;
   }
 
   public isAuth() {

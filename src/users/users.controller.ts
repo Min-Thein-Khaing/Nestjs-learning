@@ -51,8 +51,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiResponse({ status: 200, description: 'Successfully fetched user' })
   getUserById(@Param() getUserDto: GetUserDto) {
-    console.log(getUserDto);
-    return `Get User by ID endpoint`;
+    return this.usersService.findByUserId(getUserDto.id);
   }
 
   // @Get('filter')
