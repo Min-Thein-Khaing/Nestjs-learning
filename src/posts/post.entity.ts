@@ -1,6 +1,8 @@
 import {
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -33,11 +35,8 @@ export class Post {
   @Column({ type: 'timestamp', nullable: true })
   publishedOn?: Date;
 
-  @Column({
-    type: 'text',
-    array: true,
-    nullable: true,
-  })
+  @ManyToMany(() => Tag)
+  @JoinTable()
   tag?: Tag[];
 
   @OneToOne(() => PostMeta, (postMeta) => postMeta.post, {

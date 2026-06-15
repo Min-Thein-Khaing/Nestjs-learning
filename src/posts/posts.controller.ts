@@ -39,7 +39,7 @@ export class PostsController {
   @ApiOperation({ summary: 'Update a post' })
   @ApiResponse({ status: 200, description: 'Post updated successfully' })
   updatePost(@Body() updatePostDto: UpdatePostDto) {
-    console.log(updatePostDto);
+    return this.postsService.patchPost(updatePostDto);
   }
 
   @Delete(':id')

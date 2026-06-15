@@ -5,11 +5,25 @@ Content-Type: application/json
   "slug": "my-new-post-title-4",
   "content": "This is content 4",
   "status": "draft",
-  "tag" : [{"label":"san kyi tar par 4","description":"min ga lar par 4"},{"label":"san kyi tar par 4","description":"min ga lar par 4"}],
+  "tag" : [1,2],
   "meta": {
     "readTime": "50 mins " 
   },
   "authorId":1
+}
+PATCH http://localhost:3000/posts
+Content-Type: application/json
+{
+  "id":13,
+  "title": "My New Post Title 4",
+  "slug": "my-new-post-title-5",
+  "content": "This is content 5",
+  "status": "draft",
+  "tag" : [1,2],
+  "meta": {
+    "readTime": "5 mins " 
+  }
+
 }
 
 DELETE http://localhost:3000/posts/1
