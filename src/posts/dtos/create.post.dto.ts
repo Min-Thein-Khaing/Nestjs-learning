@@ -12,9 +12,9 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { PostStatus } from '../enums/postStatus.enum';
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { CreatePostMetaDto } from 'src/post-meta/dtos/create.post-meta.dto';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreatePostDto {
   @ApiProperty({
@@ -53,8 +53,7 @@ export class CreatePostDto {
 
   @ApiProperty({
     description: 'The status of the post',
-    example: PostStatus,
-    type: String,
+    enum: PostStatus,
     required: true,
   })
   @IsEnum(PostStatus, { message: 'Invalid status value' })

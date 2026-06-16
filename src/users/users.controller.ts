@@ -47,21 +47,21 @@ export class UsersController {
     return this.usersService.findAll(limit, page);
   }
 
+  @Get('filter')
+  getFilteredUsers(
+    @Query('age', new DefaultValuePipe(10), ParseIntPipe) age: number,
+    @Query('name', new DefaultValuePipe('test')) name: string,
+  ) {
+    console.log(age, name);
+    return `Get Filtered Users by age endpoint ${age} and name endpoint ${name}`;
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiResponse({ status: 200, description: 'Successfully fetched user' })
   getUserById(@Param() getUserDto: GetUserDto) {
     return this.usersService.findByUserId(getUserDto.id);
   }
-
-  // @Get('filter')
-  // getFilteredUsers(
-  //   @Query('age', new DefaultValuePipe(10), ParseIntPipe) age: number,
-  //   @Query('name', new DefaultValuePipe('test')) name: string,
-  // ) {
-  //   console.log(age, name);
-  //   return `Get Filtered Users by age endpoint ${age} and name endpoint ${name}`;
-  // }
 
   @Post()
   public createUser(@Body() createUserDto: CreateUserDto) {

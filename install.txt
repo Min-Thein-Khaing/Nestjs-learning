@@ -22,3 +22,13 @@ npm i --save @nestjs/typeorm typeorm
 3.pg
 npm i pg
 npm install --save @types/pg
+
+config for nest on libary showing that
+npm i --save @nestjs/config
+
+ဒါကို ဖြေရှင်းဖို့ အလွယ်ဆုံးနဲ့ အကောင်းဆုံးနည်းလမ်းက OS အားလုံး (Windows, Mac, Linux) မှာ cross-platform အဆင်ပြေပြေ အလုပ်လုပ်ပေးမယ့် cross-env ဆိုတဲ့ package လေးကို သုံးလိုက်တာပါပဲ။
+npm install --save-dev cross-env
+
+
+that is environment validation
+npm i joi

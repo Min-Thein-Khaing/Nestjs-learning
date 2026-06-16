@@ -10,9 +10,9 @@ import {
 } from '@nestjs/common';
 import { PostsService } from './provider/posts.service';
 import { CreatePostDto } from './dtos/create.post.dto';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { UpdatePostDto } from './dtos/update.post.dto';
 import { GetPostDto } from './dtos/get.post.dto';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 @Controller('posts')
 export class PostsController {

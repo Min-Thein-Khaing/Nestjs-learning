@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder } from 'node_modules/@nestjs/swagger/dist/document-builder';
-import { SwaggerModule } from 'node_modules/@nestjs/swagger/dist/swagger-module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,7 +14,7 @@ async function bootstrap() {
       transform: true, // Automatically transform payloads to be objects typed according to their DTO classes
     }),
   );
-  //swagger config
+
   const config = new DocumentBuilder()
     .setTitle('NestJS API')
     .setDescription('API routes http://localhost:3000')
