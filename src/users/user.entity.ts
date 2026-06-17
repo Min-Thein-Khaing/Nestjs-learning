@@ -22,8 +22,8 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 20,
-    nullable: false,
+    length: 320,
+    nullable: true,
     unique: true,
   })
   email!: string;

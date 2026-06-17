@@ -1,8 +1,30 @@
 POST http://localhost:3000/users
 Content-Type: application/json
+
 {
   "firstName": "John d",
   "lastName": "Doe",
   "email": "john.doee@email.com",
   "password": "SecurePass123#"
+}
+
+
+POST http://localhost:3000/users/create-many
+Content-Type: application/json
+
+{
+  "users": [
+    {
+      "firstName": "Johndfdf d",
+      "lastName": "Doed",
+      "email": "john.doeeedsa@gmail.com",
+      "password": "SecurePass123#"
+    },
+    {
+      "firstName": "Johns ssd",
+      "lastName": "Doea",
+      "email": "john.doeeeddafd@gmail.com",
+      "password": "SecurePass123#"
+    }
+  ]
 }
