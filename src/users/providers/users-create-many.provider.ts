@@ -33,9 +33,11 @@ export class UsersCreateManyProvider {
       return newUsers;
     } catch (error) {
       //Rollback
-      await queryRunner.rollbackTransaction();
+      if (error instanceof InternalServerErrorException) {
+        await queryRunner.rollbackTransaction();
 
-      throw new InternalServerErrorException('Users create failed');
+        throw new InternalServerErrorException('Users create failed');
+      }
     } finally {
       //Release
       await queryRunner.release();

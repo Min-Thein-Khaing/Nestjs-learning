@@ -7,6 +7,7 @@ import { Post } from '../post.entity';
 import { Repository } from 'typeorm';
 import { GetPostDto } from '../dtos/get.post.dto';
 import { UpdatePostDto } from '../dtos/update.post.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 
 @Injectable()
 export class PostsService {
@@ -16,16 +17,18 @@ export class PostsService {
     // private readonly postMetaService: PostMetaService,
     @InjectRepository(Post)
     private postRepository: Repository<Post>,
+
+    /** inject pagination provider */
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  async findAll(userId?: number) {
-    console.log(userId);
+  async findAll(postQuery: GetPostDto) {
     // const user = this.usersService.findByUserId(userId);
-    const post = this.postRepository.find({
-      relations: {
-        author: true,
-      },
-    });
+
+    const post = this.paginationProvider.paginateQuery(
+      postQuery,
+      this.postRepository,
+    );
     return post;
   }
   async createPost(createPostDto: CreatePostDto) {
@@ -65,15 +68,15 @@ export class PostsService {
   }
 
   /** delete method */
-  async deletePost(getPostDto: GetPostDto) {
+  async deletePost(id: number) {
     const post = await this.postRepository.findOne({
-      where: { id: getPostDto.id },
+      where: { id },
     });
 
     if (!post) {
       throw new NotFoundException('Post not found');
     }
 
-    return await this.postRepository.delete(getPostDto.id);
+    return await this.postRepository.delete(id);
   }
 }

@@ -1,1 +1,5 @@
 GET http://localhost:3000/posts
+
+GET http://localhost:3000/posts?limit=3
+
+GET http://localhost:3000/posts?limit=3&page=3
