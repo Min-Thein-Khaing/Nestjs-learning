@@ -1,10 +1,8 @@
 import {
   BadRequestException,
-  ConflictException,
   forwardRef,
   Inject,
   Injectable,
-  RequestTimeoutException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthService } from 'src/auth/provider/auth.service';
@@ -15,6 +13,7 @@ import { CreateManyUserDto } from '../dtos/create_many.user.dto';
 import * as config from '@nestjs/config';
 import authConfig from '../config/auth.config';
 import { UsersCreateManyProvider } from './users-create-many.provider';
+import { UserCreateProvider } from './user-create.provider';
 
 /**
  *  class to connect to users table and make business tasks
@@ -37,29 +36,13 @@ export class UsersService {
 
     /** to inject UsersCreateManyProvider */
     private readonly usersCreateManyProvider: UsersCreateManyProvider,
+
+    private readonly userCreateProvider: UserCreateProvider,
   ) {}
 
   /**  create users */
   async create(createUserDto: CreateUserDto) {
-    const existUser = await this.userRepository.findOne({
-      where: { email: createUserDto.email },
-    });
-
-    if (existUser) {
-      throw new ConflictException('Email already exists');
-    }
-
-    try {
-      const newUser = this.userRepository.create(createUserDto);
-
-      return await this.userRepository.save(newUser);
-    } catch (error) {
-      if (error) {
-        throw new RequestTimeoutException('Error creating user', {
-          description: 'Database save error',
-        });
-      }
-    }
+    return await this.userCreateProvider.create(createUserDto);
   }
 
   /** to get all users */

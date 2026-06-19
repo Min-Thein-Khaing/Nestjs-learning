@@ -18,11 +18,13 @@ export class User {
     length: 20,
     nullable: false,
   })
-  lastName!: string;
+  lastName?: string;
 
   @Column({
     type: 'varchar',
     length: 320,
+    // Some existing rows have no email. The DTO still requires email for all
+    // newly created users, while this keeps schema sync from rejecting old data.
     nullable: true,
     unique: true,
   })
@@ -30,10 +32,14 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 20,
-    nullable: false,
+    // A bcrypt hash is currently 60 characters. Keep extra room so changing
+    // the hashing cost/implementation does not break database inserts.
+    length: 255,
+    // Legacy rows may not have a password. CreateUserDto still requires one
+    // for every newly created user.
+    nullable: true,
   })
-  password!: string;
+  password?: string;
 
   @OneToMany(() => Post, (post) => post.author)
   posts?: Post[];
