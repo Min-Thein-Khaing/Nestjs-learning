@@ -1,3 +1,4 @@
+import { EmailFindByUserProvider } from './email_find_by_user.provider';
 import {
   BadRequestException,
   forwardRef,
@@ -38,6 +39,8 @@ export class UsersService {
     private readonly usersCreateManyProvider: UsersCreateManyProvider,
 
     private readonly userCreateProvider: UserCreateProvider,
+
+    private readonly emailFindByUserProvider: EmailFindByUserProvider,
   ) {}
 
   /**  create users */
@@ -79,5 +82,9 @@ export class UsersService {
 
   async createMany(createUserDto: CreateManyUserDto) {
     return await this.usersCreateManyProvider.createMany(createUserDto);
+  }
+
+  async findByEmail(email: string) {
+    return await this.emailFindByUserProvider.findByEmail(email);
   }
 }

@@ -10,6 +10,12 @@ const validationSchema = Joi.object({
   DATABASE_AUTOLOAD: Joi.boolean().optional(),
   DATABASE_SYNC: Joi.boolean().optional(),
   AUTH_FALLBACK_URL: Joi.string(),
+
+  JWT_SECRET: Joi.string().required(),
+
+  JWT_TOKEN_AUDIENCE: Joi.string().required(),
+  JWT_TOKEN_ISSUER: Joi.string().required(),
+  JWT_ACCESS_TOKEN_TTL: Joi.number().required(),
 });
 
 export default validationSchema;

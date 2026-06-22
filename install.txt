@@ -32,3 +32,6 @@ npm install --save-dev cross-env
 
 that is environment validation
 npm i joi
+
+for jwt 
+npm i @nestjs/jwt
