@@ -8,6 +8,8 @@ import { Repository } from 'typeorm';
 import { GetPostDto } from '../dtos/get.post.dto';
 import { UpdatePostDto } from '../dtos/update.post.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { PostCreateProvide } from './post-create.provide';
+import { UserData } from 'src/auth/interfaces/userData.interface';
 
 @Injectable()
 export class PostsService {
@@ -20,6 +22,8 @@ export class PostsService {
 
     /** inject pagination provider */
     private readonly paginationProvider: PaginationProvider,
+
+    private readonly postCreateProvider: PostCreateProvide,
   ) {}
 
   async findAll(postQuery: GetPostDto) {
@@ -28,21 +32,16 @@ export class PostsService {
     const post = this.paginationProvider.paginateQuery(
       postQuery,
       this.postRepository,
+      {
+        relations: {
+          author: true,
+        },
+      },
     );
     return post;
   }
-  async createPost(createPostDto: CreatePostDto) {
-    const user = await this.usersService.findByUserId(createPostDto.authorId);
-    const tag = await this.tagsService.findByTagId(createPostDto.tag!);
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    const post = this.postRepository.create({
-      ...createPostDto,
-      tag,
-      author: user,
-    });
-    return await this.postRepository.save(post);
+  async createPost(createPostDto: CreatePostDto, user: UserData) {
+    return await this.postCreateProvider.createPost(createPostDto, user);
   }
 
   async patchPost(updatePostDto: UpdatePostDto) {

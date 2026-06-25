@@ -1,15 +1,15 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwiaWF0IjoxNzgyMzYyMDM2LCJleHAiOjE3ODIzNjU2MzYsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.vJ9mNF1MnHtBGQGe11G_sV98s5ErEDFGPY6H8JVKdw8
 {
-  "title": "My New Post Title 4",
+  "title": "san nay dr par ",
   "slug": "my-new-post-title-4",
   "content": "This is content 4",
   "status": "draft",
   "tag" : [1,2],
   "meta": {
     "readTime": "50 mins " 
-  },
-  "authorId":1
+  }
 }
 PATCH http://localhost:3000/posts
 Content-Type: application/json
