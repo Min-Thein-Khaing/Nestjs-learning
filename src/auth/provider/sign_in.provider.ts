@@ -20,7 +20,7 @@ export class SignInProvider {
 
     private readonly hashingProvider: HashingProvider,
 
-    private readonly generateTokens: GenerateTokenProvider,
+    private readonly generateTokenProvider: GenerateTokenProvider,
   ) {}
 
   async signIn(signInDto: SignInDto) {
@@ -35,6 +35,6 @@ export class SignInProvider {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    return await this.generateTokens.generateTokens(user);
+    return await this.generateTokenProvider.generateTokens(user);
   }
 }
