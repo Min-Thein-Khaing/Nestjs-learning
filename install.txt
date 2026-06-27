@@ -35,3 +35,7 @@ npm i joi
 
 for jwt 
 npm i @nestjs/jwt
+
+
+google-auth-library
+npm i google-auth-library

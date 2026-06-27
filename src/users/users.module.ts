@@ -8,6 +8,8 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersCreateManyProvider } from './providers/users-create-many.provider';
 import { UserCreateProvider } from './providers/user-create.provider';
 import { EmailFindByUserProvider } from './providers/email_find_by_user.provider';
+import { FindByGoogleId } from './providers/find-by-google-id';
+import { CreateGoogleUserProvider } from './providers/create-google-user.provider';
 import authConfig from './config/auth.config';
 
 @Module({
@@ -17,6 +19,8 @@ import authConfig from './config/auth.config';
     UsersCreateManyProvider,
     UserCreateProvider,
     EmailFindByUserProvider,
+    FindByGoogleId,
+    CreateGoogleUserProvider,
   ],
   exports: [UsersService],
   imports: [
