@@ -25,6 +25,7 @@ export class AuthenticationGuard implements CanActivate {
       [AuthType.None]: { canActivate: () => true },
     };
   }
+
   async canActivate(context: ExecutionContext): Promise<boolean> {
     // ၁။ Reflector ကိုသုံးပြီး Controller/Route မှာ ကပ်ခဲ့တဲ့ @Auth(...) ရဲ့ တန်ဖိုးကို ယူမယ်
     // ဥပမာ- @Auth(AuthType.Bearer) လို့ ရေးခဲ့ရင် authTypes က [AuthType.Bearer] ဖြစ်မယ်

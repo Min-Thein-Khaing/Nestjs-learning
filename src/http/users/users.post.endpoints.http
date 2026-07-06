@@ -2,9 +2,9 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "firstName": "Johnddfd dfdd",
+  "firstName": "Soed",
   "lastName": "Doeees",
-  "email": "admin@email.com",
+  "email": "adminMins@gmail.com",
   "password": "SecurePass12d#"
 }
 
@@ -15,9 +15,9 @@ Content-Type: application/json
 {
   "users": [
     {
-      "firstName": "Johndfdf d",
+      "firstName": "Mike",
       "lastName": "Doed",
-      "email": "john.doeeedsa@gmail.com",
+      "email": "johd@gmail.com",
       "password": "SecurePass123#"
     },
     {
