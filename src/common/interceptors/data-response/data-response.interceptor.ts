@@ -7,6 +7,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { map, Observable } from 'rxjs';
 
+type ResponseBody = Record<string, unknown>;
 @Injectable()
 export class DataResponseInterceptor implements NestInterceptor {
   constructor(private readonly configService: ConfigService) {}
@@ -14,10 +15,9 @@ export class DataResponseInterceptor implements NestInterceptor {
     //tap see all data not chg data
     //map chg response data
     return next.handle().pipe(
-      map((data: any) => ({
+      map((response: ResponseBody) => ({
         apiVersion: this.configService.get<string>('database.apiVersion'),
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        data,
+        data: response.data ?? response,
       })),
     );
   }
