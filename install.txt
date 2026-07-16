@@ -36,6 +36,11 @@ npm i joi
 for jwt 
 npm i @nestjs/jwt
 
+for multer
+npm install --save @types/multer
 
 google-auth-library
 npm i google-auth-library
+
+
+npm i @aws-sdk/client-s3
