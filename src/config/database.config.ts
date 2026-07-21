@@ -9,6 +9,4 @@ export default registerAs('database', () => ({
   // entities: [User, Post, Tag],
   autoLoadEntities: process.env.DATABASE_AUTOLOAD === 'true' ? true : false,
   synchronize: process.env.DATABASE_SYNC === 'true' ? true : false,
-
-  apiVersion: process.env.API_VERSION,
 }));
