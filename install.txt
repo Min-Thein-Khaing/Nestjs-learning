@@ -44,3 +44,18 @@ npm i google-auth-library
 
 
 npm i @aws-sdk/client-s3
+
+for mail
+@nestjs-modules/mailer
+npm i @nestjs-modules/mailer
+
+nodemailer
+npm i nodemailer
+
+@types/nodemailer
+npm i @types/nodemailer
+
+ejs
+npm i ejs
+@types/ejs
+npm i @types/ejs

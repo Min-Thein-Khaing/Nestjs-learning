@@ -1,36 +1,50 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import { Injectable, RequestTimeoutException } from '@nestjs/common';
+import {
+  Injectable,
+  RequestTimeoutException,
+  ServiceUnavailableException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class AwsUpload {
-  private readonly s3Client: S3Client;
-
-  constructor(private readonly configService: ConfigService) {
-    // Instantiate S3 Client once per service lifecycle
-    this.s3Client = new S3Client({
-      region: this.configService.get<string>('AWS_REGION')!,
-      credentials: {
-        accessKeyId: this.configService.get<string>('AWS_ACCESS_KEY')!,
-        secretAccessKey: this.configService.get<string>('AWS_SECRET_KEY')!,
-      },
-    });
-  }
+  constructor(private readonly configService: ConfigService) {}
 
   async uploadFile(file: Express.Multer.File): Promise<string> {
+    const region = this.configService.get<string>('appConfig.awsRegion');
+    const accessKeyId = this.configService.get<string>(
+      'appConfig.awsClientKey',
+    );
+    const secretAccessKey = this.configService.get<string>(
+      'appConfig.awsSecretKey',
+    );
+    const bucketName = this.configService.get<string>(
+      'appConfig.awsBucketName',
+    );
+
+    if (!region || !accessKeyId || !secretAccessKey || !bucketName) {
+      throw new ServiceUnavailableException(
+        'AWS S3 uploads are not configured for this environment.',
+      );
+    }
+
+    const s3Client = new S3Client({
+      region,
+      credentials: { accessKeyId, secretAccessKey },
+    });
     const fileName = this.generateFileName(file);
 
     try {
       const command = new PutObjectCommand({
-        Bucket: this.configService.get<string>('AWS_BUCKET_NAME'),
+        Bucket: bucketName,
         Key: fileName,
         Body: file.buffer,
         ContentType: file.mimetype,
       });
 
-      await this.s3Client.send(command);
+      await s3Client.send(command);
       return fileName;
     } catch (error) {
       throw new RequestTimeoutException((error as Error).message);

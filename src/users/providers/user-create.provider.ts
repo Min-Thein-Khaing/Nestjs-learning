@@ -1,3 +1,4 @@
+import { MailService } from './../../mail/providers/mail.service';
 import {
   ConflictException,
   forwardRef,
@@ -22,6 +23,8 @@ export class UserCreateProvider {
 
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
+
+    private readonly mailService: MailService,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -41,7 +44,15 @@ export class UserCreateProvider {
         ),
       });
 
-      return await this.userRepository.save(newUser);
+      const dataNew = this.userRepository.create(newUser);
+
+      try {
+        await this.mailService.sendWelcomeMail(dataNew);
+      } catch (error) {
+        throw new InternalServerErrorException((error as Error).message);
+      }
+
+      return await this.userRepository.save(dataNew);
     } catch (error: unknown) {
       // The pre-check above gives a friendly response in the normal case, but
       // the database constraint is still needed for concurrent requests.
