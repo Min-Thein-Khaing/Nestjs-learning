@@ -39,6 +39,7 @@ documentation
 
 # dotenv environment variable files
 .env*
+.env.*
 .env.development.local
 .env.development
 .env.test.local
