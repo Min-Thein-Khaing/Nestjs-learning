@@ -58,6 +58,7 @@ describe('UserCreateProvider', () => {
   });
   it('UserCreateProvider should be defined', () => {
     expect(provider).toBeDefined();
+    expect(userRepository).toBeDefined();
   });
 
   describe('create', () => {

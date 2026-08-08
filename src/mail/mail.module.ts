@@ -3,7 +3,7 @@ import { MailService } from './providers/mail.service';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { ConfigService } from '@nestjs/config';
 import { join } from 'path';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/adapters/handlebars.adapter';
+import { EjsAdapter } from '@nestjs-modules/mailer/adapters/ejs.adapter';
 
 @Global()
 @Module({
@@ -27,7 +27,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/adapters/handlebars.ad
         },
         template: {
           dir: join(__dirname, 'templates'),
-          adapter: new HandlebarsAdapter(undefined, {
+          adapter: new EjsAdapter(undefined, {
             inlineCssEnabled: true,
           }),
           options: {
