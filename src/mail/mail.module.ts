@@ -27,7 +27,7 @@ import { EjsAdapter } from '@nestjs-modules/mailer/adapters/ejs.adapter';
         },
         template: {
           dir: join(__dirname, 'templates'),
-          adapter: new EjsAdapter(undefined, {
+          adapter: new EjsAdapter({
             inlineCssEnabled: true,
           }),
           options: {

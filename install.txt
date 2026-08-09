@@ -63,3 +63,16 @@ npm i @types/ejs
 
 faker 
 npm install @faker-js/faker --save-dev
+
+//pm2
+npm install pm2 -g
+
+
+//dr ka give name 
+pm2 start npm --name nest-blog-app -- start
+
+
+//background ka nay loat ag
+pm2 startup
+
+pm2 save
